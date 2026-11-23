@@ -295,6 +295,70 @@ const TEX = {
     c.restore();
   }),
 
+  dashboard: () => canvasTex(1024, 700, (c, w, h) => {
+    const g = c.createRadialGradient(w * 0.5, h * 0.55, 20, w * 0.5, h * 0.55, w * 0.7);
+    g.addColorStop(0, "#1a1c2a"); g.addColorStop(1, "#05060a");
+    c.fillStyle = g; c.fillRect(0, 0, w, h);
+    for (let i = 0; i < 500; i++) { c.fillStyle = `rgba(220,225,255,${Math.random() * 0.6})`; c.fillRect(Math.random() * w, Math.random() * h, 1.5, 1.5); }
+    // galaxy of notes
+    const nodes = Array.from({ length: 26 }, (_, i) => {
+      const a = i * 2.4, r = 40 + (i * 37) % 210;
+      return [w * 0.55 + Math.cos(a) * r * 1.3, h * 0.55 + Math.sin(a) * r * 0.75];
+    });
+    c.strokeStyle = "rgba(160,180,255,.18)"; c.lineWidth = 1.5;
+    nodes.forEach(([x, y], i) => { const [x2, y2] = nodes[(i * 7 + 3) % nodes.length]; c.beginPath(); c.moveTo(x, y); c.lineTo(x2, y2); c.stroke(); });
+    nodes.forEach(([x, y], i) => { c.fillStyle = ["#ffd98a", "#9fc3ff", "#7fe0c8", "#ffb3a0"][i % 4]; c.beginPath(); c.arc(x, y, i % 5 ? 3 : 6, 0, 7); c.fill(); });
+    c.fillStyle = "#e9ecf5"; c.font = "500 40px Inter, sans-serif"; c.fillText("Dzień dobry, Damian.", 48, 76);
+    c.fillStyle = "#8a90a6"; c.font = "500 17px 'JetBrains Mono', monospace"; c.fillText("CENTRUM DOWODZENIA · NEXUS", 50, 108);
+    c.fillStyle = "#e9ecf5"; c.font = "500 54px 'JetBrains Mono', monospace"; c.textAlign = "right"; c.fillText("14:49", w - 40, 80); c.textAlign = "left";
+    ["01  DZIŚ", "02  ROZKAZY", "03  BRIEF", "04  PROJEKTY", "05  SYSTEMY", "06  J.A.R.V.I.S."].forEach((t, i) => {
+      c.fillStyle = "#c9cede"; c.font = "500 22px 'JetBrains Mono', monospace"; c.fillText(t, 50, 220 + i * 52);
+    });
+    c.fillStyle = "#8a90a6"; c.font = "500 15px 'JetBrains Mono', monospace"; c.fillText("TELEMETRIA", w - 210, 190);
+    [["62", "WĘZŁÓW"], ["106", "POŁĄCZEŃ"], ["53", "NOTATEK"]].forEach(([n, l], i) => {
+      c.fillStyle = "#e9ecf5"; c.font = "500 38px 'JetBrains Mono', monospace"; c.fillText(n, w - 210, 245 + i * 70);
+      c.fillStyle = "#8a90a6"; c.font = "500 13px 'JetBrains Mono', monospace"; c.fillText(l, w - 210, 265 + i * 70);
+    });
+  }),
+
+  insta: () => canvasTex(220, 460, (c, w, h) => {
+    c.fillStyle = "#0f0f10"; c.fillRect(0, 0, w, h);
+    c.fillStyle = "#f5f5f5"; c.font = "600 15px Inter, sans-serif"; c.fillText("fizjio_anatomia", 14, 30);
+    const g = c.createLinearGradient(14, 48, 70, 104); g.addColorStop(0, "#f9ce34"); g.addColorStop(0.5, "#ee2a7b"); g.addColorStop(1, "#6228d7");
+    c.strokeStyle = g; c.lineWidth = 4; c.beginPath(); c.arc(44, 78, 26, 0, 7); c.stroke();
+    c.fillStyle = "#2f8f8a"; c.beginPath(); c.arc(44, 78, 21, 0, 7); c.fill();
+    c.fillStyle = "#f5f5f5"; c.font = "600 16px Inter, sans-serif"; c.textAlign = "center";
+    [["18", "posty", 115], ["50", "obs.", 175]].forEach(([n, l, x]) => { c.fillText(n, x, 76); c.font = "500 11px Inter, sans-serif"; c.fillText(l, x, 93); c.font = "600 16px Inter, sans-serif"; });
+    c.textAlign = "left";
+    const cols = ["#7a2e2e", "#e7ddca", "#2f6f78", "#c9a14a", "#3d5a3c", "#a9573a", "#2a1548", "#b8623f", "#21424a"];
+    for (let i = 0; i < 9; i++) {
+      const x = 4 + (i % 3) * 71, y = 130 + Math.floor(i / 3) * 71;
+      c.fillStyle = cols[i]; c.fillRect(x, y, 69, 69);
+      c.strokeStyle = "rgba(255,255,255,.55)"; c.lineWidth = 3; c.beginPath(); // stylised muscle
+      c.ellipse(x + 34, y + 36, 10, 24, (i - 4) * 0.25, 0, 7); c.stroke();
+    }
+    c.fillStyle = "#f5f5f5"; c.font = "500 12px Inter, sans-serif"; c.fillText("● REC · rolka: naramienny", 14, 365);
+  }),
+
+  calendar: () => canvasTex(500, 712, (c, w, h) => {
+    c.fillStyle = "#f3ede2"; c.fillRect(0, 0, w, h);
+    c.fillStyle = "#2f8f8a"; c.fillRect(0, 0, w, 110);
+    c.fillStyle = "#f6efe6"; c.font = "600 44px Fraunces, Georgia, serif"; c.textAlign = "center"; c.fillText("Listopad", w / 2, 72);
+    c.font = "500 18px Inter, sans-serif"; c.fillText("automatyczna synchronizacja", w / 2, 98);
+    c.fillStyle = "#6b6157"; c.font = "600 18px Inter, sans-serif";
+    ["Pn", "Wt", "Śr", "Cz", "Pt", "So", "Nd"].forEach((d, i) => c.fillText(d, 42 + i * 69, 148));
+    const events = { 6: "#2f8f8a", 7: "#2f8f8a", 13: "#e0915f", 20: "#2f8f8a", 21: "#2f8f8a", 24: "#b98cff", 27: "#e0915f" };
+    for (let d = 0; d < 30; d++) {
+      const col = (d + 5) % 7, row = Math.floor((d + 5) / 7);
+      const x = 12 + col * 69, y = 168 + row * 82;
+      c.fillStyle = "#e7dfd1"; c.fillRect(x, y, 64, 76);
+      c.fillStyle = "#3a332c"; c.font = "600 18px Inter, sans-serif"; c.textAlign = "left"; c.fillText(String(d + 1), x + 7, y + 22);
+      if (events[d + 1]) { c.fillStyle = events[d + 1]; c.fillRect(x + 6, y + 34, 52, 12); c.fillRect(x + 6, y + 52, 36, 12); }
+    }
+    c.textAlign = "center"; c.fillStyle = "#b91c1c"; c.font = "600 30px Caveat, cursive";
+    c.fillText("plan → kalendarz → zadania ⟳", w / 2, h - 22);
+  }),
+
   globe: () => canvasTex(1024, 512, (c, w, h) => {
     c.fillStyle = "#2c6f78"; c.fillRect(0, 0, w, h);
     c.fillStyle = "#e2cf9e";
@@ -332,6 +396,9 @@ function applyTextures(root) {
     if (n === "tex_screen") o.material = basic(TEX.screen());
     else if (n === "tex_sky") o.material = basic(TEX.sky());
     else if (n === "tex_phone") o.material = basic(TEX.phone());
+    else if (n === "tex_dashboard") o.material = basic(TEX.dashboard());
+    else if (n === "tex_insta") o.material = basic(TEX.insta());
+    else if (n === "tex_calendar") o.material = new THREE.MeshStandardMaterial({ map: TEX.calendar(), roughness: 0.85 });
     else if (n === "tex_whiteboard") o.material = new THREE.MeshStandardMaterial({ map: TEX.whiteboard(), roughness: 0.35 });
     else if (n === "tex_poster") o.material = new THREE.MeshStandardMaterial({ map: TEX.poster(), roughness: 0.8 });
     else if (n === "tex_planner") o.material = new THREE.MeshStandardMaterial({ map: TEX.planner(), roughness: 0.6 });

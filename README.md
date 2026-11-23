@@ -19,8 +19,9 @@ Część przedmiotów prowadzi do projektów na GitHub Pages.
 
 ### Przedmioty i ich `id`
 
-`monitor`, `chair`, `anatomia` (link), `jarvis` (link), `priorytet` (link), `whiteboard`, `books`,
-`magnifier`, `swim`, `globe`, `poster` (link), `plant`, `mug`, `phone` (kontakt).
+`chair`, `monitor`, `anatomia` (link), `dashboard` (link do demo), `automations`, `jarvis` (link),
+`priorytet` (link), `recorder`, `instagram` (link), `whiteboard`, `books`, `magnifier`, `swim`, `globe`,
+`poster` (link), `plant`, `mug`, `phone` (kontakt).
 
 ## Zmiana tekstów i linków
 
@@ -50,8 +51,7 @@ Potem otwórz http://localhost:8000.
 
 ## Do uzupełnienia
 
-- `content.js` → `phone`: Twój adres e-mail (teraz jest zaślepka).
-- Linki do GitHub Pages (`Anatomia`, `Priorytet`) zakładają adres `damianlapczynski.github.io/<repo>/`. Sprawdź, czy działają.
+- Rejestrator wykładów nie ma linku (repozytorium prywatne). Jeśli zrobisz publiczne demo, dopisz `links` w `content.js`.
 
 ## Publikacja (GitHub Pages)
 

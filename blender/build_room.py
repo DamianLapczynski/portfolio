@@ -396,10 +396,14 @@ with item("monitor", on_desk(0.0, 0.0)):
 # ---------------------------------------------------------------------------
 # Desk décor: laptop in vertical stand, headphones on stand, small plant
 # ---------------------------------------------------------------------------
-with grp("laptop", on_desk(-0.98, 0.12)):
-    box("lap_stand", 0.07, 0.26, 0.012, (0, 0, 0.006), W["alu"], bevel=0.004)
-    box("lap_stand_wall", 0.035, 0.24, 0.05, (0, 0, 0.035), W["alu"], bevel=0.004)
-    box("laptop_body", 0.018, 0.31, 0.22, (0, 0, 0.13), W["alu"], bevel=0.006)
+with item("dashboard", on_desk(-1.0, 0.08), rot_z=0.3):
+    box("tab_stand", 0.16, 0.1, 0.01, (0, 0.01, 0.005), W["alu"], bevel=0.003)
+    box("tab_support", 0.05, 0.012, 0.13, (0, 0.045, 0.07), W["alu"], bevel=0.003, rot=(-0.35, 0, 0))
+    tilt = -0.3
+    n = Vector((0, -math.cos(tilt), -math.sin(tilt)))  # screen normal after tilting back
+    c = Vector((0, 0.015, 0.105))
+    box("tab_body", 0.27, 0.008, 0.19, tuple(c), mat("tab_body", "#1c1d20", 0.3, 0.4), bevel=0.004, rot=(tilt, 0, 0))
+    plane("tex_dashboard", 0.255, 0.175, tuple(c + n * 0.0047), mat("tab_screen", "#000000", 0.2, emit="#ffffff", strength=1.0), rot=(math.pi / 2 + tilt, 0, 0))
 with grp("headphones", on_desk(-0.72, 0.16)):
     cyl("hp_base", 0.06, 0.065, 0.015, (0, 0, 0.0075), W["walnut_dark"], bevel=0.003)
     tube("hp_pole", [(0, 0, 0.01), (0.005, 0, 0.12), (-0.01, 0, 0.22), (0, 0, 0.27)], 0.01, W["walnut"])
@@ -413,6 +417,17 @@ with grp("desk_plant", on_desk(0.95, 0.25)):
         a = i * 2.4
         leaf(f"dp_leaf{i}", random.uniform(0.07, 0.11), 0.018, W["leaf"], (math.cos(a) * 0.01, math.sin(a) * 0.01, 0.075),
              (random.uniform(-0.5, 0.5), random.uniform(-0.6, 0.6), a))
+
+# desk microphone = lecture recorder → item: recorder
+with item("recorder", on_desk(0.36, 0.16), rot_z=-0.2):
+    dark = mat("mic_body", "#202226", 0.35, 0.6)
+    for a in (0.3, 2.4, 4.5):
+        tube(f"mic_leg{a}", [(0, 0, 0.055), (0.065 * math.cos(a), 0.065 * math.sin(a), 0.004)], 0.004, dark, ring=6)
+    cyl("mic_mount", 0.008, 0.008, 0.04, (0, 0, 0.07), dark, seg=12)
+    cyl("mic_body", 0.022, 0.02, 0.1, (0, 0, 0.13), dark, bevel=0.003)
+    cyl("mic_band", 0.0235, 0.0235, 0.008, (0, 0, 0.183), W["brass"])
+    sphere("mic_grille", 0.026, (0, 0, 0.205), mat("mic_grille", "#9a9da3", 0.45, 0.85), seg=24, scale=(1, 1, 1.25))
+    sphere("mic_rec", 0.004, (0, -0.021, 0.14), mat("rec_led", "#ff3b30", 0.4, emit="#ff2a1f", strength=8), seg=10)
 
 # planner "Moje sprawy" → item: priorytet
 with item("priorytet", on_desk(-0.72, -0.2), rot_z=0.15):
@@ -469,9 +484,17 @@ with item("whiteboard", (-2.3, Y1 - 0.02, 1.38)):
     for i, col in enumerate(["#1e3a8a", "#b91c1c", "#15803d"]):
         cyl(f"marker{i}", 0.009, 0.009, 0.11, (-0.12 + i * 0.12, -0.035, -0.41), mat(f"mk{i}", col, 0.5), seg=10, rot=(0, math.pi / 2, 0))
 
-with item("poster", (-2.3, Y1 - 0.02, 2.36)):
-    box("poster_frame", 0.94, 0.025, 0.56, (0, 0, 0), mat("frame_black", "#111111", 0.5), bevel=0.005)
-    plane("tex_poster", 0.88, 0.5, (0, -0.0135, 0), mat("poster_art", "#17222a", 0.8))
+with item("poster", (-2.5, Y1 - 0.02, 2.34)):
+    box("poster_frame", 0.84, 0.025, 0.5, (0, 0, 0), mat("frame_black", "#111111", 0.5), bevel=0.005)
+    plane("tex_poster", 0.78, 0.44, (0, -0.0135, 0), mat("poster_art", "#17222a", 0.8))
+
+with item("automations", (-1.8, Y1 - 0.012, 2.3)):
+    box("cal_back", 0.34, 0.008, 0.48, (0, 0, 0), W["paper"], bevel=0.002)
+    plane("tex_calendar", 0.33, 0.47, (0, -0.0045, 0), mat("cal_face", "#f3ede2", 0.85))
+    for i in range(7):
+        tube(f"cal_ring{i}", arc_pts(0.009, 0, 2 * math.pi, 12, "xz")[:-1], 0.0015, W["steel"], closed=True, ring=5,
+             loc=(-0.12 + i * 0.04, -0.006, 0.235), rot=(0, 0, math.pi / 2))
+    sphere("cal_nail", 0.006, (0, -0.004, 0.27), W["steel"], seg=10)
 
 # ---------------------------------------------------------------------------
 # Floating shelves with LED strips (right side)
@@ -587,9 +610,15 @@ with grp("shelf_plant", on_shelf(2, 0.36)):
              (random.uniform(0.4, 1.1), 0, a + math.pi / 2))
     for i in range(6):
         leaf(f"vine{i}", 0.04, 0.02, W["leaf_dark"], (0.04 + i * 0.008, -0.12 - i * 0.004, 0.06 - i * 0.05), (math.pi + 0.3, 0.3 * (-1) ** i, 0.4))
-with grp("stack", on_shelf(3, -0.2)):
-    for i, col in enumerate(["#21424a", "#e7ddca", "#7a2e2e"]):
-        box(f"stack{i}", 0.22 - i * 0.02, 0.16, 0.032, (0, 0, 0.017 + i * 0.034), mat(f"stack{i}", col, 0.7), bevel=0.003, rot=(0, 0, i * 0.08))
+with item("instagram", on_shelf(3, -0.22)):
+    dark = mat("tripod", "#1d1e21", 0.4, 0.5)
+    for a in (0.6, 2.7, 4.8):
+        tube(f"rl_leg{a}", [(0, 0, 0.07), (0.07 * math.cos(a), 0.07 * math.sin(a), 0.003)], 0.004, dark, ring=6)
+    cyl("rl_pole", 0.006, 0.006, 0.1, (0, 0, 0.12), dark, seg=10)
+    tube("rl_ring", arc_pts(0.085, 0, 2 * math.pi, 48)[:-1], 0.011, mat("ring_led", "#fff4e0", 0.4, emit="#ffe6c2", strength=5), closed=True, loc=(0, 0, 0.255))
+    box("rl_holder", 0.012, 0.01, 0.09, (0, 0.006, 0.21), dark, bevel=0.003)
+    box("rl_phone", 0.046, 0.007, 0.094, (0, 0, 0.255), mat("phone_body", "#1b1b1d", 0.3, 0.4), bevel=0.003)
+    plane("tex_insta", 0.042, 0.088, (0, -0.0037, 0.255), mat("insta_screen", "#000000", 0.2, emit="#ffffff", strength=1.0))
 with grp("vase", on_shelf(3, 0.3)):
     bm = bmesh.new(); _uv(bm)
     prof = [(0.0, 0), (0.045, 0), (0.06, 0.05), (0.05, 0.12), (0.025, 0.17), (0.028, 0.2)]

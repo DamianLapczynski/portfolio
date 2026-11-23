@@ -1,6 +1,7 @@
 /* =====================================================================
    TREŚCI POKOJU — tu edytujesz teksty, linki i dopasowanie do oferty.
-   Każdy wpis odpowiada jednemu przedmiotowi w scenie 3D (po `id`).
+   Każdy wpis odpowiada jednemu przedmiotowi w scenie 3D (po `id`,
+   w Blenderze obiekt `item_<id>`). Kolejność = kolejność „Następny →”.
 
    kind   – etykieta nad tytułem ("Projekt", "O mnie", ...)
    label  – krótka nazwa w dymku po najechaniu
@@ -14,6 +15,10 @@ export const OFFER = {
   company: "Hadyński Inkaso",
 };
 
+const PAGES = "https://damianlapczynski.github.io";
+const EMAIL = "damianlapczynski01@gmail.com";
+const PHONE = "604 995 915";
+
 export const ITEMS = [
   {
     id: "chair",
@@ -21,9 +26,9 @@ export const ITEMS = [
     label: "Kim jestem",
     title: "Cześć, jestem Damian",
     body: [
-      "Studiuję fizjoterapię na DSW we Wrocławiu, prowadzę zajęcia pływania, a po godzinach buduję narzędzia z Claude Code. Wcześniej ekonomia i rachunkowość, doświadczenie w sprzedaży, sporcie i edukacji.",
+      "Studiuję fizjoterapię na DSW we Wrocławiu, prowadzę zajęcia pływania, a po godzinach buduję narzędzia z Claude Code. Za mną technikum informatyczne, ekonomia i rachunkowość oraz doświadczenie w sprzedaży, sporcie i edukacji.",
       "Ten pokój to moje portfolio. Każdy przedmiot to projekt albo cecha, która przyda się na stanowisku specjalisty ds. automatyzacji procesów i AI.",
-      "Nie mam komercyjnego stażu w IT i nie będę udawał, że mam. Mam za to rzeczy, które zbudowałem sam i które rozwiązują prawdziwe problemy. Rozejrzyj się.",
+      "Nie mam komercyjnego stażu w IT i nie będę udawał, że mam. Mam za to narzędzia, które zbudowałem sam i z których ludzie (w tym ja) korzystają codziennie. Rozejrzyj się.",
     ],
     match: ["Ambicja, samodzielność i chęć szybkiej nauki", "Doświadczenie komercyjne nie jest wymagane"],
   },
@@ -33,28 +38,63 @@ export const ITEMS = [
     label: "Komputer",
     title: "Claude Code to moje codzienne narzędzie",
     body: [
-      "Przy tym biurku powstaje wszystko, co tu widzisz. Claude i Claude Code to moje codzienne narzędzia pracy: od aplikacji webowych, przez automatyzacje, po tę stronę.",
-      "Ten pokój zbudowałem z Claude Code. Każdy model powstał z kodu w Three.js, bez gotowych plików 3D. Całość jest wersjonowana w Git i opublikowana na GitHub Pages.",
-      "Pracuję tak: precyzyjne polecenie, potem ocena planu, który zaproponuje AI, potem sprawdzenie wyniku w przeglądarce. Dopiero wtedy publikacja.",
+      "Przy tym biurku powstaje wszystko, co tu widzisz. Claude i Claude Code to moje codzienne narzędzia: aplikacje webowe, skrypty w Pythonie, automatyzacje kalendarza i poczty, generowanie materiałów do nauki.",
+      "Ten pokój też: każdy model zbudowałem skryptem w Blenderze (Python), a scenę w przeglądarce w Three.js. Całość jest wersjonowana w Git i opublikowana na GitHub Pages.",
+      "Pracuję tak: precyzyjne polecenie, ocena planu, który zaproponuje AI, potem sprawdzenie wyniku na żywo. Dopiero wtedy publikacja.",
     ],
-    match: [
-      "Codzienna praca z Claude",
-      "Claude Code (mile widziane)",
-      "Pisanie precyzyjnych poleceń, ocena planu AI",
-    ],
+    match: ["Codzienna praca z Claude", "Claude Code (mile widziane)", "Pisanie precyzyjnych poleceń, ocena planu AI"],
   },
   {
     id: "anatomia",
     kind: "Projekt",
     label: "Anatomia 3D",
-    title: "Anatomia 3D",
+    title: "Anatomia 3D: atlas do nauki fizjoterapii",
     body: [
-      "Interaktywna aplikacja do nauki anatomii w 3D, zrobiona pod moje własne studia. Uczę się funkcjonalnie, przez ruch i skojarzenia zamiast wkuwania. Tego samego chciałem od narzędzia, więc je zbudowałem.",
-      "Aplikacja ma logowanie użytkowników przez Firebase, więc musiałem zrozumieć, co dzieje się pod spodem: ekran, baza danych, uwierzytelnianie i połączenie z usługą zewnętrzną.",
-      "Tak właśnie pracuję: widzę problem, który sam mam, i buduję narzędzie, które go rozwiązuje.",
+      "Interaktywny atlas anatomii 3D, który zbudowałem pod własne studia. Działa w przeglądarce na telefonie, iPadzie i komputerze, także offline. Ma 3300 struktur z polskimi i łacińskimi nazwami, bazę 180 mięśni (przyczepy, unerwienie, test siły), 17 stawów z 41 testami klinicznymi, 49 schorzeń z wizualizacją 3D i symulator uszkodzenia nerwu lub korzenia C5–S1.",
+      "Pod spodem: logowanie kontem Google i synchronizacja postępu w bazie Firestore między urządzeniami, fiszki z algorytmem powtórek SM-2, tryb offline. Modele 3D przetwarzam własnym potokiem: Blender (Python), uproszczenie i kompresja siatek, wypalanie cieni.",
+      "Każda publikacja przechodzi przez GitHub Actions. Skrypt walidacji sprawdza spójność bazy wiedzy z modelem i zatrzymuje wdrożenie, jeśli coś się nie zgadza.",
     ],
-    match: ["Własne projekty zrobione z pomocą AI", "Ciekawość, jak działa aplikacja „pod spodem”"],
-    links: [{ label: "Otwórz Anatomię 3D", url: "https://damianlapczynski.github.io/Anatomia/" }],
+    match: [
+      "Własne projekty zrobione z pomocą AI",
+      "Ciekawość, jak działa aplikacja „pod spodem”: ekran, baza danych, połączenia",
+      "Dokładność: testy przed publikacją",
+      "Git i GitHub (mile widziane)",
+    ],
+    links: [{ label: "Otwórz Anatomię 3D", url: `${PAGES}/Anatomia/` }],
+  },
+  {
+    id: "dashboard",
+    kind: "Projekt",
+    label: "Centrum Dowodzenia",
+    title: "Centrum Dowodzenia (Desktop HQ)",
+    body: [
+      "Osobisty pulpit, który zbiera w jednym miejscu to, co zwykle jest rozrzucone po kilku aplikacjach: plan dnia z kalendarza, zadania, pocztę od ludzi, aktywne projekty i notatki z mojej bazy wiedzy w Obsidianie.",
+      "Notatki widać jako „galaktykę” powiązań, a osobny moduł ocenia porządek w bazie. Całość obsługuje się z klawiatury, bez szukania po menu.",
+      "Publiczne demo działa na fikcyjnych danych, bo prawdziwa wersja czyta mój kalendarz i pocztę.",
+    ],
+    match: [
+      "Upraszczanie ludziom pracy, mniej kliknięć",
+      "Połączenia aplikacji z innymi systemami",
+      "Własne projekty zrobione z pomocą AI",
+    ],
+    links: [{ label: "Otwórz demo", url: `${PAGES}/desktop-hq-demo/` }],
+  },
+  {
+    id: "automations",
+    kind: "Automatyzacja",
+    label: "Automatyzacje",
+    title: "Automatyzacje, które działają beze mnie",
+    body: [
+      "Ten kalendarz to symbol zadań, które co dzień albo co tydzień same wykonują pracę, którą wcześniej robiłem ręcznie. Działają na Claude według harmonogramu i łączą się z Google Calendar, Gmailem i moją bazą notatek.",
+      "Synchronizacja planu zajęć: odczytuje harmonogram uczelni, porównuje go z kalendarzem po unikalnym kluczu, dodaje, zmienia i usuwa zajęcia, a e-mail wysyła tylko wtedy, gdy coś się zmieniło. Ma bezpiecznik: jeśli plan wczyta się niekompletnie, niczego nie kasuje.",
+      "Kalendarz → zadania: codziennie przenosi terminy do macierzy Eisenhowera w Obsidianie, a raz w miesiącu przebudowuje ją od zera. Przepływ jest jednokierunkowy, żeby automat nigdy nie nadpisał kalendarza. Do tego cotygodniowy raport godzin pracy z projekcją na koniec miesiąca.",
+    ],
+    match: [
+      "Szukanie luk w procesach i ich automatyzacja",
+      "Doświadczenie w automatyzacji procesów (mile widziane)",
+      "Integracje z innymi systemami (Google, poczta)",
+      "Najpierw sprawdzamy, potem zmieniamy",
+    ],
   },
   {
     id: "jarvis",
@@ -66,24 +106,43 @@ export const ITEMS = [
       "Najważniejsze jest bezpieczeństwo zapisane w kodzie, a nie w prompcie. Każde narzędzie ma poziom uprawnień: odczyt, zapis odwracalny albo zapis wymagający potwierdzenia. Domyślnie działa tryb próbny (dry-run), a zmiany da się cofnąć.",
       "To dokładnie zasada z Waszej oferty: AI nie wierzy się na słowo, a każdą zmianę da się wycofać. Projekt ma testy (pytest) i komendę „jarvis doctor”, która sprawdza konfigurację.",
     ],
-    match: [
-      "Własne projekty zrobione z pomocą AI",
-      "Zmiany da się cofnąć",
-      "Integracje przez API (mile widziane)",
-    ],
+    match: ["Własne projekty zrobione z pomocą AI", "Zmiany da się cofnąć", "Integracje przez API (mile widziane)"],
     links: [{ label: "Repozytorium na GitHubie", url: "https://github.com/DamianLapczynski/JARVIS" }],
   },
   {
     id: "priorytet",
     kind: "Projekt",
     label: "Moje sprawy",
-    title: "Moje sprawy (Priorytet)",
+    title: "Moje sprawy: aplikacja dla mojej dziewczyny",
     body: [
-      "Aplikacja webowa do porządkowania spraw i priorytetów. Instaluje się na telefonie jak natywna aplikacja: ikona na ekranie głównym, tryb pełnoekranowy.",
-      "Powstała, bo potrzebowałem jednego miejsca, w którym od razu widać, co jest najważniejsze. Mniej kliknięć i szybsza decyzja: tego samego szukacie w procesach firmy.",
+      "Aplikacja do ogarniania codziennego życia, którą zrobiłem dla mojej dziewczyny. Instaluje się na iPhonie jak natywna aplikacja (ikona na ekranie głównym, pełny ekran) i ma styl zrobiony pod nią: aksamitny fiolet, złote gwiazdy, motyle.",
+      "To projekt z prawdziwą użytkowniczką, która na co dzień mówi mi, co działa, a co nie. Dobra szkoła tego, co opisujecie w ofercie: dopytać, o co naprawdę chodzi, i dopasować narzędzie do człowieka, a nie odwrotnie.",
     ],
-    match: ["Własne projekty zrobione z pomocą AI", "Upraszczanie ludziom pracy, mniej kliknięć"],
-    links: [{ label: "Otwórz aplikację", url: "https://damianlapczynski.github.io/Priorytet/" }],
+    match: ["Własne projekty zrobione z pomocą AI", "Bezpośredni kontakt z ludźmi, którzy korzystają z aplikacji"],
+    links: [{ label: "Otwórz aplikację", url: `${PAGES}/Priorytet/` }],
+  },
+  {
+    id: "recorder",
+    kind: "Projekt",
+    label: "Rejestrator wykładów",
+    title: "Rejestrator wykładów",
+    body: [
+      "System na moim komputerze, który zamienia nagranie wykładu w materiał do nauki: transkrypcję, konspekt, fiszki i raport. Skrypty w Pythonie i PowerShellu uruchamiają się automatycznie po zajęciach, a gotowe pliki trafiają do iCloud, więc uczę się z nich na iPadzie.",
+      "To automatyzacja procesu, który zna każdy student: półtorej godziny nagrania, do którego nikt potem nie wraca. Teraz z każdego wykładu zostaje konkret, a ja nie muszę nic robić ręcznie.",
+    ],
+    match: ["Szukanie luk w procesach i ich automatyzacja", "Własne projekty zrobione z pomocą AI"],
+  },
+  {
+    id: "instagram",
+    kind: "Projekt",
+    label: "@fizjio_anatomia",
+    title: "@fizjio_anatomia: posty generowane z bazy",
+    body: [
+      "Hobbystyczne konto, na którym uczę się tworzenia treści i przy okazji powtarzam anatomię. Na razie 18 postów i 50 obserwujących, więc to nauka, a nie zasięgi.",
+      "Ciekawsze jest to, jak posty powstają. Rolki i karuzele generuje skrypt prosto z bazy Anatomii 3D: renderuje mięsień w przeglądarce (Playwright), składa film (ffmpeg) i przygotowuje opis posta. Plan publikacji na 180 dni jest w pliku, a jedna komenda przygotowuje materiały na cały tydzień.",
+    ],
+    match: ["Szukanie, co da się zautomatyzować", "Własne projekty zrobione z pomocą AI"],
+    links: [{ label: "Instagram", url: "https://www.instagram.com/fizjio_anatomia/" }],
   },
   {
     id: "whiteboard",
@@ -94,11 +153,7 @@ export const ITEMS = [
       "Każde usprawnienie zaczynam tak samo: rozmawiam z osobą, która ma problem, i dopytuję, o co naprawdę chodzi. Potem mierzę, jak jest teraz, robię najmniejszą zmianę, która coś daje, testuję ją i publikuję z wpisem w changelogu.",
       "Mam za sobą ekonomię i rachunkowość, więc proces czytam też przez pieniądze: ile kosztuje czas ludzi, gdzie ucieka konwersja, co przyspieszy odzyskanie należności.",
     ],
-    match: [
-      "Biznesowe spojrzenie na procesy",
-      "Przyjmowanie zgłoszeń od działów i dopytywanie",
-      "Najpierw sprawdzamy, potem zmieniamy",
-    ],
+    match: ["Biznesowe spojrzenie na procesy", "Przyjmowanie zgłoszeń od działów i dopytywanie", "Najpierw sprawdzamy, potem zmieniamy"],
   },
   {
     id: "books",
@@ -131,11 +186,7 @@ export const ITEMS = [
       "Prowadzę zajęcia pływania. Codziennie tłumaczę złożoną technikę ludziom, którzy nie mają o niej pojęcia, i to tak, żeby od razu mogli ją wykonać.",
       "To ta sama umiejętność, której potrzeba w rozmowie z działem zgłaszającym problem albo przy ogłaszaniu zmian w aplikacji: bez żargonu, konkretnie i cierpliwie.",
     ],
-    match: [
-      "Łatwość w rozmowie z osobami nietechnicznymi",
-      "Ogłaszanie zmian użytkownikom prostym językiem",
-      "Bezpośredni kontakt z ludźmi",
-    ],
+    match: ["Łatwość w rozmowie z osobami nietechnicznymi", "Ogłaszanie zmian użytkownikom prostym językiem", "Bezpośredni kontakt z ludźmi"],
   },
   {
     id: "globe",
@@ -154,7 +205,7 @@ export const ITEMS = [
     label: "Git i GitHub",
     title: "Git, GitHub i historia zmian",
     body: [
-      "Moje projekty żyją na GitHubie: Anatomia, JARVIS, Priorytet i ten pokój. Każda zmiana to commit, który da się przejrzeć i cofnąć.",
+      "Moje projekty żyją na GitHubie: Anatomia 3D, Centrum Dowodzenia, JARVIS, Moje sprawy i ten pokój. Publikuję je przez GitHub Pages, a w Anatomii każde wdrożenie przechodzi przez GitHub Actions z walidacją danych.",
       "Historia zmian jest po to, żeby po publikacji dało się odpowiedzieć na pytanie „co się zmieniło i dlaczego”, a w razie problemu szybko wrócić do działającej wersji.",
     ],
     match: ["Git i GitHub (mile widziane)", "Każda publikacja kończy się wpisem w changelogu"],
@@ -167,7 +218,7 @@ export const ITEMS = [
     title: "Rośnie, bo ktoś ją podlewa",
     body: [
       "Studiuję zaocznie, prowadzę zajęcia, a po godzinach buduję projekty. Nikt mi ich nie zadaje: uczę się, bo chcę.",
-      "Ekonomia, fizjoterapia, AI: szybko wchodzę w nowe dziedziny i łączę je ze sobą. Anatomia 3D powstała właśnie na styku dwóch z nich.",
+      "Informatyka, ekonomia, fizjoterapia, AI: szybko wchodzę w nowe dziedziny i łączę je ze sobą. Anatomia 3D powstała właśnie na styku dwóch z nich.",
     ],
     match: ["Ambicja, samodzielność i chęć szybkiej nauki"],
   },
@@ -189,11 +240,12 @@ export const ITEMS = [
     title: "Porozmawiajmy",
     body: [
       "Chętnie opowiem o projektach na żywo i pokażę, jak pracuję z Claude Code na prawdziwym przykładzie z Waszej firmy.",
+      `Telefon: ${PHONE} · E-mail: ${EMAIL}`,
     ],
     match: [],
-    // UZUPEŁNIJ: wpisz swój adres e-mail
     links: [
-      { label: "Napisz e-mail", url: "mailto:twoj.email@example.com" },
+      { label: "Zadzwoń", url: `tel:+48${PHONE.replace(/\s/g, "")}` },
+      { label: "Napisz e-mail", url: `mailto:${EMAIL}` },
       { label: "GitHub", url: "https://github.com/DamianLapczynski" },
     ],
   },
