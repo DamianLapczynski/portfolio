@@ -446,11 +446,22 @@ with item("magnifier", on_desk(-1.0, -0.25), rot_z=-0.6):
     cyl("mag_lens", 0.048, 0.048, 0.004, (0, 0, 0.009), W["glass"], seg=40)
     cyl("mag_handle", 0.01, 0.012, 0.11, (0.11, 0, 0.011), W["walnut_dark"], seg=16, rot=(0, math.pi / 2, 0))
 
-# mug → item: mug
-with item("mug", on_desk(0.62, 0.02)):
-    cyl("mug_body", 0.042, 0.038, 0.095, (0, 0, 0.0475), W["teal"], bevel=0.004)
-    cyl("coffee", 0.036, 0.036, 0.003, (0, 0, 0.088), mat("coffee", "#2a170c", 0.15))
-    tube("mug_handle", [(0.038, 0, 0.075), (0.065, 0, 0.07), (0.068, 0, 0.04), (0.04, 0, 0.025)], 0.007, W["teal"])
+# document tray with case files + stamp → item: inkaso (opens the "Inkaso w pigułce" demo)
+with item("inkaso", on_desk(0.64, 0.04), rot_z=-0.12):
+    tray = mat("tray", "#1f2124", 0.4, 0.6)
+    box("tray_base", 0.24, 0.31, 0.008, (0, 0, 0.004), tray, bevel=0.002)
+    for sx in (-1, 1):
+        box(f"tray_side{sx}", 0.006, 0.31, 0.035, (sx * 0.117, 0, 0.0175), tray, bevel=0.002)
+    box("tray_back", 0.24, 0.006, 0.035, (0, 0.152, 0.0175), tray, bevel=0.002)
+    for k in range(6):
+        box(f"sheet{k}", 0.21, 0.297, 0.0012, (random.uniform(-0.004, 0.004), random.uniform(-0.004, 0.004), 0.009 + k * 0.0016),
+            W["paper"], rot=(0, 0, random.uniform(-0.03, 0.03)))
+    plane("tex_invoice", 0.21, 0.297, (0, 0, 0.0185), mat("invoice", "#f4efe4", 0.9), rot=(0, 0, 0.01))
+    # rubber stamp next to the tray
+    box("stamp_base", 0.06, 0.035, 0.018, (0.17, -0.09, 0.009), mat("stamp_base", "#2b2d31", 0.5), bevel=0.004)
+    box("stamp_rubber", 0.056, 0.031, 0.004, (0.17, -0.09, 0.0015), mat("stamp_ink", "#1f7a4d", 0.8))
+    cyl("stamp_neck", 0.008, 0.01, 0.04, (0.17, -0.09, 0.038), W["walnut_dark"], seg=14)
+    sphere("stamp_knob", 0.02, (0.17, -0.09, 0.07), W["walnut"], seg=20, scale=(1, 1, 0.85))
 
 # phone → item: phone
 with item("phone", on_desk(0.72, -0.24), rot_z=-0.3):

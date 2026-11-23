@@ -28,10 +28,13 @@
       <strong>Damian Łapczyński</strong>
       <span>Portfolio · <span class="hud__role"></span></span>
     </div>
+    <div class="hud__actions">
+    <button class="hud__btn" type="button" data-quick>Szybki przegląd</button>
     <button class="hud__btn" id="list-btn" type="button" aria-expanded="false" aria-controls="list">
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h10v2H4z"/></svg>
       Spis rzeczy
     </button>
+    </div>
   </header>
 
   <nav class="list" id="list" hidden aria-label="Przedmioty w pokoju"><ul></ul></nav>
@@ -66,11 +69,15 @@
         Kliknij przedmioty, żeby dowiedzieć się, kim jestem i dlaczego pasuję do tej roli.
       </p>
       <button class="intro__go" id="enter" type="button" disabled>Ładowanie pokoju…</button>
+      <button class="intro__quick" type="button" data-quick>Szybki przegląd (bez 3D, z PDF) →</button>
     </div>
   </section>
 
+  <main class="quick" id="quick" hidden aria-label="Szybki przegląd"></main>
+
   <noscript><p class="noscript">Ta strona potrzebuje JavaScriptu, żeby pokazać pokój 3D.</p></noscript>
 
+  <script type="module" src="assets/js/quick.js"></script>
   <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>

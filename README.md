@@ -19,9 +19,26 @@ Część przedmiotów prowadzi do projektów na GitHub Pages.
 
 ### Przedmioty i ich `id`
 
-`chair`, `monitor`, `anatomia` (link), `dashboard` (link do demo), `automations`, `jarvis` (link),
+`chair`, `monitor`, `inkaso` (demo), `anatomia` (link), `dashboard` (link do demo), `automations`, `jarvis` (link),
 `priorytet` (link), `recorder`, `instagram` (link), `whiteboard`, `books`, `magnifier`, `swim`, `globe`,
-`poster` (link), `plant`, `mug`, `phone` (kontakt).
+`poster` (link), `plant`, `phone` (kontakt).
+
+## Szybki przegląd (bez 3D)
+
+Link do CV: `https://damianlapczynski.github.io/portfolio/?szybko`. Jedna strona z dopasowaniem do oferty
+i projektami, przycisk „Zapisz jako PDF”. Treść: obiekt `QUICK` w `assets/js/content.js`, logika: `assets/js/quick.js`.
+
+## Demo „Inkaso w pigułce”
+
+`projects/inkaso/`: React + TypeScript + SQLite w przeglądarce (sql.js). Dopasowanie wpłat z wyciągu do spraw
+regułami SQL, weryfikacja, cofanie zmian, przypomnienia, podgląd webhooka. Dane fikcyjne.
+
+```bash
+cd projects/inkaso
+npm install
+npm test        # 13 testów logiki dopasowania
+npm run build   # buduje do /inkaso (serwowane przez GitHub Pages)
+```
 
 ## Zmiana tekstów i linków
 

@@ -359,6 +359,23 @@ const TEX = {
     c.fillText("plan → kalendarz → zadania ⟳", w / 2, h - 22);
   }),
 
+  invoice: () => canvasTex(420, 594, (c, w, h) => {
+    c.fillStyle = "#f4efe4"; c.fillRect(0, 0, w, h);
+    c.fillStyle = "#1d1f1e"; c.font = "600 26px Fraunces, Georgia, serif"; c.fillText("Wezwanie do zapłaty", 30, 56);
+    c.fillStyle = "#646b67"; c.font = "500 14px 'JetBrains Mono', monospace"; c.fillText("sprawa WIN/2026/0440", 30, 82);
+    c.fillStyle = "#cfc8b9";
+    for (let i = 0; i < 9; i++) c.fillRect(30, 120 + i * 22, i % 3 === 2 ? 220 : 340, 6);
+    c.strokeStyle = "#cfc8b9"; c.lineWidth = 2; c.strokeRect(30, 330, 360, 120);
+    [["Należność", "12 300,00 zł"], ["Wpłacono", "6 000,00 zł"], ["Do zapłaty", "6 300,00 zł"]].forEach(([a, b], i) => {
+      c.fillStyle = "#3a3f3c"; c.font = "500 16px Inter, sans-serif"; c.fillText(a, 44, 366 + i * 34);
+      c.font = "600 16px 'JetBrains Mono', monospace"; c.textAlign = "right"; c.fillText(b, 376, 366 + i * 34); c.textAlign = "left";
+    });
+    c.save(); c.translate(270, 520); c.rotate(-0.18);
+    c.strokeStyle = "rgba(31,122,77,.85)"; c.lineWidth = 5; c.strokeRect(-110, -34, 220, 68);
+    c.fillStyle = "rgba(31,122,77,.85)"; c.font = "700 26px Inter, sans-serif"; c.textAlign = "center"; c.fillText("ZAKSIĘGOWANO", 0, 10);
+    c.restore();
+  }),
+
   globe: () => canvasTex(1024, 512, (c, w, h) => {
     c.fillStyle = "#2c6f78"; c.fillRect(0, 0, w, h);
     c.fillStyle = "#e2cf9e";
@@ -380,7 +397,7 @@ const TEX = {
    Load the Blender scene
    ===================================================================== */
 const items = [];   // { id, root, anchor, center, hover, baseY, marker }
-const anim = { globe: null, eyes: [], steam: [] };
+const anim = { globe: null, eyes: [] };
 
 async function loadFonts() {
   const want = ["600 40px Caveat", "500 20px 'JetBrains Mono'", "600 40px Fraunces", "italic 600 40px Fraunces", "500 20px Inter", "600 20px Inter"];
@@ -397,6 +414,7 @@ function applyTextures(root) {
     else if (n === "tex_sky") o.material = basic(TEX.sky());
     else if (n === "tex_phone") o.material = basic(TEX.phone());
     else if (n === "tex_dashboard") o.material = basic(TEX.dashboard());
+    else if (n === "tex_invoice") o.material = new THREE.MeshStandardMaterial({ map: TEX.invoice(), roughness: 0.9 });
     else if (n === "tex_insta") o.material = basic(TEX.insta());
     else if (n === "tex_calendar") o.material = new THREE.MeshStandardMaterial({ map: TEX.calendar(), roughness: 0.85 });
     else if (n === "tex_whiteboard") o.material = new THREE.MeshStandardMaterial({ map: TEX.whiteboard(), roughness: 0.35 });
@@ -439,23 +457,6 @@ function registerItems(root) {
   });
 }
 
-function addSteam() {
-  const mug = items.find((i) => i.id === "mug");
-  if (!mug) return;
-  const puff = canvasTex(64, 64, (c, w, h) => {
-    const g = c.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2);
-    g.addColorStop(0, "rgba(255,255,255,.5)"); g.addColorStop(1, "rgba(255,255,255,0)");
-    c.fillStyle = g; c.fillRect(0, 0, w, h);
-  }, { flip: true });
-  for (let i = 0; i < 4; i++) {
-    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: puff, transparent: true, depthWrite: false, opacity: 0 }));
-    s.userData.phase = i / 4;
-    s.userData.base = mug.center.clone();
-    scene.add(s);
-    anim.steam.push(s);
-  }
-}
-
 async function boot() {
   await loadFonts();
   const gltf = await new GLTFLoader().loadAsync(MODEL_URL, (e) => {
@@ -472,7 +473,6 @@ async function boot() {
   applyTextures(room);
   scene.add(room);
   registerItems(room);
-  addSteam();
   buildMarkers();
   updateProgress();
   enterBtn.textContent = "Wejdź do pokoju";
@@ -718,12 +718,6 @@ function tick() {
     if (anim.globe) anim.globe.rotation.y += dt * 0.25;
     const blink = t % 4.2 < 0.12 ? 0.12 : 1;
     anim.eyes.forEach((e) => { e.userData.sy ??= e.scale.y; e.scale.y = e.userData.sy * blink; });
-    anim.steam.forEach((s) => {
-      const p = (t * 0.35 + s.userData.phase) % 1;
-      s.position.copy(s.userData.base).add(new THREE.Vector3(Math.sin(p * 6 + s.userData.phase * 9) * 0.015, 0.06 + p * 0.22, 0));
-      s.material.opacity = Math.sin(p * Math.PI) * 0.5;
-      s.scale.setScalar(0.04 + p * 0.08);
-    });
   }
 
   composer.render();
@@ -734,10 +728,10 @@ function tick() {
    Boot
    ===================================================================== */
 function noWebGL() {
-  enterBtn.textContent = "Pokaż spis przedmiotów";
+  enterBtn.textContent = "Pokaż szybki przegląd";
   enterBtn.disabled = false;
-  $(".intro__text").textContent = "Twoja przeglądarka nie obsługuje grafiki 3D (WebGL), więc pokażę przedmioty jako listę.";
-  enterBtn.addEventListener("click", () => { $("#intro").classList.add("is-gone"); renderList(); listEl.hidden = false; });
+  $(".intro__text").textContent = "Twoja przeglądarka nie obsługuje grafiki 3D (WebGL), więc pokażę wersję bez 3D.";
+  enterBtn.addEventListener("click", () => window.__openQuick?.());
 }
 
 enterBtn.addEventListener("click", () => {

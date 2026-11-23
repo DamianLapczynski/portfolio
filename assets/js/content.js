@@ -45,6 +45,29 @@ export const ITEMS = [
     match: ["Codzienna praca z Claude", "Claude Code (mile widziane)", "Pisanie precyzyjnych poleceń, ocena planu AI"],
   },
   {
+    id: "inkaso",
+    kind: "Demo dla Was",
+    label: "Inkaso w pigułce",
+    title: "Inkaso w pigułce: demo pod Waszą branżę",
+    body: [
+      "Zrobiłem małą aplikację, żeby pokazać, jak podszedłbym do typowego procesu w firmie windykacyjnej: wczytujesz wyciąg z banku, system dopasowuje wpłaty do spraw, człowiek weryfikuje wątpliwe przypadki, a zalegający dostają przypomnienie w tonie dopasowanym do opóźnienia.",
+      "Automat księguje tylko to, co pewne (numer sprawy w tytule przelewu). Wpłata częściowa albo przelew bez numeru trafia do weryfikacji, a każdą decyzję, także automatyczną, da się cofnąć. Przypomnienia proszą o numer sprawy w tytule, żeby następnym razem dopasowanie zadziałało samo.",
+      "Pod spodem: React i TypeScript, baza SQLite w przeglądarce z regułami dopasowania w SQL-u, 13 testów automatycznych, podgląd zdarzenia webhooka do CRM. Dane są fikcyjne, a jak naprawdę wygląda Wasz proces, chciałbym usłyszeć od ludzi, którzy go robią.",
+    ],
+    match: [
+      "Szukanie luk w procesach i ich automatyzacja",
+      "Biznesowe spojrzenie: szybsze odzyskanie należności",
+      "Podstawy SQL (mile widziane)",
+      "TypeScript / React (mile widziane)",
+      "Webhooki (mile widziane)",
+      "Zmiany da się cofnąć",
+    ],
+    links: [
+      { label: "Otwórz demo", url: "inkaso/" },
+      { label: "Kod źródłowy", url: "https://github.com/DamianLapczynski/portfolio/tree/main/projects/inkaso" },
+    ],
+  },
+  {
     id: "anatomia",
     kind: "Projekt",
     label: "Anatomia 3D",
@@ -223,17 +246,6 @@ export const ITEMS = [
     match: ["Ambicja, samodzielność i chęć szybkiej nauki"],
   },
   {
-    id: "mug",
-    kind: "Szczegół",
-    label: "Kawa",
-    title: "Kawa bez limitu",
-    body: [
-      "W ofercie wypatrzyłem kawę bez limitu. Uczciwie: to nie jest główny powód, dla którego aplikuję. Ale nie jest też bez znaczenia.",
-      "Drobiazg, ale coś o mnie mówi: czytam rzeczy do końca, łącznie z benefitami.",
-    ],
-    match: [],
-  },
-  {
     id: "phone",
     kind: "Kontakt",
     label: "Kontakt",
@@ -250,3 +262,30 @@ export const ITEMS = [
     ],
   },
 ];
+
+/* =====================================================================
+   SZYBKI PRZEGLĄD (wersja bez 3D, do druku / PDF)
+   Link bezpośredni: …/portfolio/?szybko
+   ===================================================================== */
+export const QUICK = {
+  contact: { phone: PHONE, email: EMAIL, github: "https://github.com/DamianLapczynski" },
+  summary:
+    "Student fizjoterapii (DSW Wrocław) i trener pływania, z technikum informatycznym, ekonomią i rachunkowością za sobą. Na co dzień buduję z Claude Code aplikacje i automatyzacje, których sam używam: atlas anatomii 3D z bazą danych i logowaniem, osobisty pulpit, zadania synchronizujące kalendarz i pocztę. Bez komercyjnego stażu w IT, z projektami, które działają i można je kliknąć.",
+  fit: [
+    ["Własne projekty zrobione z pomocą AI", "Anatomia 3D, Centrum Dowodzenia, Inkaso w pigułce, JARVIS, Moje sprawy, ten pokój 3D: wszystkie z linkami."],
+    ["Codzienna praca z Claude / Claude Code", "Każdy projekt powyżej powstał z Claude Code; automatyzacje działają na Claude według harmonogramu."],
+    ["Biznesowe spojrzenie na procesy", "Ekonomia, rachunkowość i sprzedaż. Demo inkaso pokazuje, gdzie w obsłudze wpłat ucieka czas i jak to skrócić."],
+    ["Ciekawość, jak działa aplikacja „pod spodem”", "Firestore, logowanie Google, tryb offline i potok modeli 3D w Anatomii; SQLite i reguły SQL w demo inkaso."],
+    ["Dokładność, sprawdzanie wyników AI", "Walidacja danych w GitHub Actions przed publikacją, 13 testów w demo, w JARVIS-ie tryb próbny i cofanie zmian."],
+    ["Łatwość w rozmowie z osobami nietechnicznymi", "Uczę pływania: codziennie tłumaczę trudną technikę prostym językiem."],
+    ["Mile widziane: SQL, TypeScript/React, Git, API, webhooki, automatyzacja", "Demo inkaso (SQL, TS, React, podgląd webhooka), GitHub i GitHub Actions, integracje z Google Calendar i Gmailem."],
+  ],
+  about: [
+    ["Studia", "Fizjoterapia, Uniwersytet DSW, Wrocław (niestacjonarne)"],
+    ["Wcześniej", "Technikum informatyczne; ekonomia i rachunkowość"],
+    ["Praca", "Instruktor i trener pływania; doświadczenie w sprzedaży i edukacji"],
+    ["Narzędzia", "Claude Code, Python, JavaScript/TypeScript, React, SQL (SQLite), Firebase, Git/GitHub, Blender, Excel/Sheets"],
+    ["Języki", "polski C2, angielski C1, hiszpański A1"],
+  ],
+  projects: ["inkaso", "anatomia", "dashboard", "automations", "jarvis", "priorytet", "recorder", "instagram"],
+};
