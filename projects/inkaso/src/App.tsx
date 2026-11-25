@@ -72,9 +72,9 @@ export default function App() {
       <header className="top">
         <a className="back" href="../">← Wróć do pokoju</a>
         <p className="eyebrow">Demo · dane fikcyjne</p>
-        <h1>Inkaso w pigułce</h1>
+        <h1>Rozliczanie wpłat</h1>
         <p className="lead">
-          Codzienna praca działu należności w czterech krokach: wczytaj wyciąg z banku, dopasuj wpłaty do spraw,
+          Codzienna praca każdej firmy, która wystawia faktury, w czterech krokach: wczytaj wyciąg z banku, dopasuj wpłaty do spraw,
           zweryfikuj wątpliwe, wyślij przypomnienia zalegającym. Automat robi to, co pewne, a człowiek decyduje o reszcie.
         </p>
         <p className="tech">React · TypeScript · SQLite w przeglądarce (sql.js) · 13 testów (Vitest)</p>

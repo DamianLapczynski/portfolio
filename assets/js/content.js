@@ -1,18 +1,18 @@
 /* =====================================================================
-   TREŚCI POKOJU — tu edytujesz teksty, linki i dopasowanie do oferty.
+   TREŚCI POKOJU — tu edytujesz teksty i linki.
    Każdy wpis odpowiada jednemu przedmiotowi w scenie 3D (po `id`,
    w Blenderze obiekt `item_<id>`). Kolejność = kolejność „Następny →”.
 
    kind   – etykieta nad tytułem ("Projekt", "O mnie", ...)
    label  – krótka nazwa w dymku po najechaniu
    body   – akapity tekstu
-   match  – wymagania z oferty, które ten przedmiot pokazuje
+   match  – umiejętności, które ten przedmiot pokazuje (sekcja „Co to pokazuje”)
    links  – przyciski (url: GitHub Pages, repozytorium, mail…)
    ===================================================================== */
 
-export const OFFER = {
-  role: "Specjalista ds. automatyzacji procesów i AI",
-  company: "Hadyński Inkaso",
+export const PROFILE = {
+  tagline: "Automatyzacja · AI · Fizjoterapia · Sport",
+  intro: "Student fizjoterapii, trener pływania i twórca narzędzi z AI",
 };
 
 const PAGES = "https://damianlapczynski.github.io";
@@ -27,10 +27,10 @@ export const ITEMS = [
     title: "Cześć, jestem Damian",
     body: [
       "Studiuję fizjoterapię na DSW we Wrocławiu, prowadzę zajęcia pływania, a po godzinach buduję narzędzia z Claude Code. Za mną technikum informatyczne, ekonomia i rachunkowość oraz doświadczenie w sprzedaży, sporcie i edukacji.",
-      "Ten pokój to moje portfolio. Każdy przedmiot to projekt albo cecha, która przyda się na stanowisku specjalisty ds. automatyzacji procesów i AI.",
+      "Ten pokój to moje portfolio. Każdy przedmiot to projekt albo cecha, którą wnoszę do zespołu, niezależnie od branży.",
       "Nie mam komercyjnego stażu w IT i nie będę udawał, że mam. Mam za to narzędzia, które zbudowałem sam i z których ludzie (w tym ja) korzystają codziennie. Rozejrzyj się.",
     ],
-    match: ["Ambicja, samodzielność i chęć szybkiej nauki", "Doświadczenie komercyjne nie jest wymagane"],
+    match: ["Samodzielność i szybka nauka", "Łączenie różnych dziedzin: technologia, biznes, zdrowie, sport"],
   },
   {
     id: "monitor",
@@ -42,25 +42,24 @@ export const ITEMS = [
       "Ten pokój też: każdy model zbudowałem skryptem w Blenderze (Python), a scenę w przeglądarce w Three.js. Całość jest wersjonowana w Git i opublikowana na GitHub Pages.",
       "Pracuję tak: precyzyjne polecenie, ocena planu, który zaproponuje AI, potem sprawdzenie wyniku na żywo. Dopiero wtedy publikacja.",
     ],
-    match: ["Codzienna praca z Claude", "Claude Code (mile widziane)", "Pisanie precyzyjnych poleceń, ocena planu AI"],
+    match: ["Codzienna praca z narzędziami AI (Claude, Claude Code)", "Precyzyjne polecenia i krytyczna ocena wyników AI", "Python, JavaScript, Git"],
   },
   {
     id: "inkaso",
-    kind: "Demo dla Was",
-    label: "Inkaso w pigułce",
-    title: "Inkaso w pigułce: demo pod Waszą branżę",
+    kind: "Demo",
+    label: "Rozliczanie wpłat",
+    title: "Rozliczanie wpłat: automatyzacja procesu biznesowego",
     body: [
-      "Zrobiłem małą aplikację, żeby pokazać, jak podszedłbym do typowego procesu w firmie windykacyjnej: wczytujesz wyciąg z banku, system dopasowuje wpłaty do spraw, człowiek weryfikuje wątpliwe przypadki, a zalegający dostają przypomnienie w tonie dopasowanym do opóźnienia.",
+      "Mała aplikacja, która pokazuje, jak podchodzę do automatyzacji typowego procesu w firmie: wczytujesz wyciąg z banku, system dopasowuje wpłaty do spraw, człowiek weryfikuje wątpliwe przypadki, a zalegający dostają przypomnienie w tonie dopasowanym do opóźnienia. Ten problem ma każda firma, która wystawia faktury.",
       "Automat księguje tylko to, co pewne (numer sprawy w tytule przelewu). Wpłata częściowa albo przelew bez numeru trafia do weryfikacji, a każdą decyzję, także automatyczną, da się cofnąć. Przypomnienia proszą o numer sprawy w tytule, żeby następnym razem dopasowanie zadziałało samo.",
-      "Pod spodem: React i TypeScript, baza SQLite w przeglądarce z regułami dopasowania w SQL-u, 13 testów automatycznych, podgląd zdarzenia webhooka do CRM. Dane są fikcyjne, a jak naprawdę wygląda Wasz proces, chciałbym usłyszeć od ludzi, którzy go robią.",
+      "Pod spodem: React i TypeScript, baza SQLite w przeglądarce z regułami dopasowania w SQL-u, 13 testów automatycznych i podgląd zdarzenia webhooka do CRM. Dane są fikcyjne.",
     ],
     match: [
-      "Szukanie luk w procesach i ich automatyzacja",
-      "Biznesowe spojrzenie: szybsze odzyskanie należności",
-      "Podstawy SQL (mile widziane)",
-      "TypeScript / React (mile widziane)",
-      "Webhooki (mile widziane)",
-      "Zmiany da się cofnąć",
+      "Automatyzacja procesów biznesowych",
+      "SQL, TypeScript, React",
+      "Integracje: webhooki, CRM",
+      "Człowiek decyduje, automat robi to, co pewne",
+      "Każdą zmianę da się cofnąć",
     ],
     links: [
       { label: "Otwórz demo", url: "inkaso/" },
@@ -78,10 +77,10 @@ export const ITEMS = [
       "Każda publikacja przechodzi przez GitHub Actions. Skrypt walidacji sprawdza spójność bazy wiedzy z modelem i zatrzymuje wdrożenie, jeśli coś się nie zgadza.",
     ],
     match: [
-      "Własne projekty zrobione z pomocą AI",
-      "Ciekawość, jak działa aplikacja „pod spodem”: ekran, baza danych, połączenia",
-      "Dokładność: testy przed publikacją",
-      "Git i GitHub (mile widziane)",
+      "Budowanie dużej aplikacji od pomysłu do wdrożenia",
+      "Baza danych i logowanie (Firebase / Firestore)",
+      "Testy i walidacja przed publikacją (GitHub Actions)",
+      "Wiedza z fizjoterapii przełożona na produkt",
     ],
     links: [{ label: "Otwórz Anatomię 3D", url: `${PAGES}/Anatomia/` }],
   },
@@ -96,9 +95,9 @@ export const ITEMS = [
       "Publiczne demo działa na fikcyjnych danych, bo prawdziwa wersja czyta mój kalendarz i pocztę.",
     ],
     match: [
-      "Upraszczanie ludziom pracy, mniej kliknięć",
-      "Połączenia aplikacji z innymi systemami",
-      "Własne projekty zrobione z pomocą AI",
+      "Upraszczanie pracy: mniej kliknięć, wszystko w jednym miejscu",
+      "Łączenie danych z wielu źródeł",
+      "Projektowanie interfejsu",
     ],
     links: [{ label: "Otwórz demo", url: `${PAGES}/desktop-hq-demo/` }],
   },
@@ -113,10 +112,9 @@ export const ITEMS = [
       "Kalendarz → zadania: codziennie przenosi terminy do macierzy Eisenhowera w Obsidianie, a raz w miesiącu przebudowuje ją od zera. Przepływ jest jednokierunkowy, żeby automat nigdy nie nadpisał kalendarza. Do tego cotygodniowy raport godzin pracy z projekcją na koniec miesiąca.",
     ],
     match: [
-      "Szukanie luk w procesach i ich automatyzacja",
-      "Doświadczenie w automatyzacji procesów (mile widziane)",
-      "Integracje z innymi systemami (Google, poczta)",
-      "Najpierw sprawdzamy, potem zmieniamy",
+      "Automatyzacja powtarzalnej pracy",
+      "Integracje: Google Calendar, Gmail, notatki",
+      "Bezpieczniki: automat nie psuje danych",
     ],
   },
   {
@@ -127,9 +125,9 @@ export const ITEMS = [
     body: [
       "Szkielet osobistego asystenta w Pythonie, w stylu eleganckiego kamerdynera. Ma kanały (terminal, głos, bot na Telegramie, dashboard), rejestr narzędzi z pluginami i miejsce na integrację z Google.",
       "Najważniejsze jest bezpieczeństwo zapisane w kodzie, a nie w prompcie. Każde narzędzie ma poziom uprawnień: odczyt, zapis odwracalny albo zapis wymagający potwierdzenia. Domyślnie działa tryb próbny (dry-run), a zmiany da się cofnąć.",
-      "To dokładnie zasada z Waszej oferty: AI nie wierzy się na słowo, a każdą zmianę da się wycofać. Projekt ma testy (pytest) i komendę „jarvis doctor”, która sprawdza konfigurację.",
+      "Zasada, którą stosuję wszędzie: AI nie wierzy się na słowo, a każdą zmianę da się wycofać. Projekt ma testy (pytest) i komendę „jarvis doctor”, która sprawdza konfigurację.",
     ],
-    match: ["Własne projekty zrobione z pomocą AI", "Zmiany da się cofnąć", "Integracje przez API (mile widziane)"],
+    match: ["Python i testy (pytest)", "Bezpieczeństwo zaprojektowane w kodzie", "Integracje przez API (Telegram, Google)"],
     links: [{ label: "Repozytorium na GitHubie", url: "https://github.com/DamianLapczynski/JARVIS" }],
   },
   {
@@ -139,9 +137,9 @@ export const ITEMS = [
     title: "Moje sprawy: aplikacja dla mojej dziewczyny",
     body: [
       "Aplikacja do ogarniania codziennego życia, którą zrobiłem dla mojej dziewczyny. Instaluje się na iPhonie jak natywna aplikacja (ikona na ekranie głównym, pełny ekran) i ma styl zrobiony pod nią: aksamitny fiolet, złote gwiazdy, motyle.",
-      "To projekt z prawdziwą użytkowniczką, która na co dzień mówi mi, co działa, a co nie. Dobra szkoła tego, co opisujecie w ofercie: dopytać, o co naprawdę chodzi, i dopasować narzędzie do człowieka, a nie odwrotnie.",
+      "To projekt z prawdziwą użytkowniczką, która na co dzień mówi mi, co działa, a co nie. Dobra szkoła tego, co najważniejsze w każdej pracy z klientem: dopytać, o co naprawdę chodzi, i dopasować narzędzie do człowieka, a nie odwrotnie.",
     ],
-    match: ["Własne projekty zrobione z pomocą AI", "Bezpośredni kontakt z ludźmi, którzy korzystają z aplikacji"],
+    match: ["Praca z prawdziwym użytkownikiem", "Aplikacja mobilna w przeglądarce (PWA)", "Dbałość o wygląd i wygodę"],
     links: [{ label: "Otwórz aplikację", url: `${PAGES}/Priorytet/` }],
   },
   {
@@ -153,7 +151,7 @@ export const ITEMS = [
       "System na moim komputerze, który zamienia nagranie wykładu w materiał do nauki: transkrypcję, konspekt, fiszki i raport. Skrypty w Pythonie i PowerShellu uruchamiają się automatycznie po zajęciach, a gotowe pliki trafiają do iCloud, więc uczę się z nich na iPadzie.",
       "To automatyzacja procesu, który zna każdy student: półtorej godziny nagrania, do którego nikt potem nie wraca. Teraz z każdego wykładu zostaje konkret, a ja nie muszę nic robić ręcznie.",
     ],
-    match: ["Szukanie luk w procesach i ich automatyzacja", "Własne projekty zrobione z pomocą AI"],
+    match: ["Automatyzacja powtarzalnej pracy", "Python, PowerShell, zadania cykliczne", "AI do przetwarzania nagrań i tekstu"],
   },
   {
     id: "instagram",
@@ -164,7 +162,7 @@ export const ITEMS = [
       "Hobbystyczne konto, na którym uczę się tworzenia treści i przy okazji powtarzam anatomię. Na razie 18 postów i 50 obserwujących, więc to nauka, a nie zasięgi.",
       "Ciekawsze jest to, jak posty powstają. Rolki i karuzele generuje skrypt prosto z bazy Anatomii 3D: renderuje mięsień w przeglądarce (Playwright), składa film (ffmpeg) i przygotowuje opis posta. Plan publikacji na 180 dni jest w pliku, a jedna komenda przygotowuje materiały na cały tydzień.",
     ],
-    match: ["Szukanie, co da się zautomatyzować", "Własne projekty zrobione z pomocą AI"],
+    match: ["Tworzenie treści i social media", "Automatyczne generowanie materiałów (Playwright, ffmpeg)", "Planowanie publikacji"],
     links: [{ label: "Instagram", url: "https://www.instagram.com/fizjio_anatomia/" }],
   },
   {
@@ -174,9 +172,9 @@ export const ITEMS = [
     title: "Jak patrzę na procesy",
     body: [
       "Każde usprawnienie zaczynam tak samo: rozmawiam z osobą, która ma problem, i dopytuję, o co naprawdę chodzi. Potem mierzę, jak jest teraz, robię najmniejszą zmianę, która coś daje, testuję ją i publikuję z wpisem w changelogu.",
-      "Mam za sobą ekonomię i rachunkowość, więc proces czytam też przez pieniądze: ile kosztuje czas ludzi, gdzie ucieka konwersja, co przyspieszy odzyskanie należności.",
+      "Mam za sobą ekonomię i rachunkowość, więc proces czytam też przez pieniądze: ile kosztuje czas ludzi, gdzie ucieka konwersja, co przyspieszy przepływ pieniędzy.",
     ],
-    match: ["Biznesowe spojrzenie na procesy", "Przyjmowanie zgłoszeń od działów i dopytywanie", "Najpierw sprawdzamy, potem zmieniamy"],
+    match: ["Biznesowe spojrzenie na procesy", "Rozmowa z ludźmi, zanim cokolwiek zmienię", "Małe kroki, mierzalny efekt"],
   },
   {
     id: "books",
@@ -184,10 +182,10 @@ export const ITEMS = [
     label: "Ekonomia i sprzedaż",
     title: "Ekonomia, rachunkowość, sprzedaż",
     body: [
-      "Zanim trafiłem na fizjoterapię, studiowałem ekonomię i rachunkowość i pracowałem w sprzedaży. Rozumiem język firmy, która zarządza należnościami: płynność, koszt obsługi sprawy, terminy.",
+      "Zanim trafiłem na fizjoterapię, studiowałem ekonomię i rachunkowość i pracowałem w sprzedaży. Rozumiem język finansów: płynność, koszty, marża, terminy płatności.",
       "Sprzedaż nauczyła mnie, że każdy zbędny krok w procesie to utracony klient. Automatyzacja ma sens wtedy, gdy przekłada się na wynik, a nie wtedy, gdy jest efektowna.",
     ],
-    match: ["Biznesowe spojrzenie na procesy", "Sprzedaż i konwersja (mile widziane)"],
+    match: ["Podstawy ekonomii i rachunkowości", "Doświadczenie w sprzedaży i obsłudze klienta"],
   },
   {
     id: "magnifier",
@@ -195,10 +193,10 @@ export const ITEMS = [
     label: "Dokładność",
     title: "Najpierw badanie, potem terapia",
     body: [
-      "Fizjoterapia nauczyła mnie zasady, którą macie w ofercie: najpierw sprawdzamy, potem zmieniamy. Nie zaczyna się terapii bez badania i nie kończy jej bez ponownego testu.",
+      "Fizjoterapia nauczyła mnie zasady, którą stosuję wszędzie: najpierw sprawdzam, potem zmieniam. Nie zaczyna się terapii bez badania i nie kończy jej bez ponownego testu.",
       "Tak samo traktuję wynik AI. Czytam plan, sprawdzam go w kodzie, danych albo logach i dopiero wtedy akceptuję. AI jest szybkie, ale odpowiedzialność za wynik jest moja.",
     ],
-    match: ["Dokładność i sprawdzanie wyników zamiast wierzenia AI na słowo", "Szukanie przyczyn błędów, testy przed publikacją"],
+    match: ["Dokładność i weryfikacja wyników", "Szukanie przyczyn problemów, a nie tylko objawów"],
   },
   {
     id: "swim",
@@ -207,20 +205,20 @@ export const ITEMS = [
     title: "Tłumaczę trudne rzeczy prosto",
     body: [
       "Prowadzę zajęcia pływania. Codziennie tłumaczę złożoną technikę ludziom, którzy nie mają o niej pojęcia, i to tak, żeby od razu mogli ją wykonać.",
-      "To ta sama umiejętność, której potrzeba w rozmowie z działem zgłaszającym problem albo przy ogłaszaniu zmian w aplikacji: bez żargonu, konkretnie i cierpliwie.",
+      "Tej samej umiejętności potrzeba w każdej pracy z ludźmi: z klientem, pacjentem albo zespołem. Bez żargonu, konkretnie i cierpliwie.",
     ],
-    match: ["Łatwość w rozmowie z osobami nietechnicznymi", "Ogłaszanie zmian użytkownikom prostym językiem", "Bezpośredni kontakt z ludźmi"],
+    match: ["Komunikacja prostym językiem", "Praca z grupami, także z dziećmi", "Cierpliwość i dawanie informacji zwrotnej"],
   },
   {
     id: "globe",
     kind: "Cecha",
     label: "Języki",
-    title: "Nowości w AI czytam u źródła",
+    title: "Nowości czytam u źródła",
     body: [
-      "Znam polski (C2), angielski (C1) i trochę hiszpańskiego (A1). Dzięki angielskiemu czytam dokumentację, changelogi i zapowiedzi narzędzi AI, zanim trafią do polskich artykułów.",
-      "Śledzenie tego, co dzieje się w AI za granicą, i testowanie, co da się wdrożyć u siebie, to dla mnie przyjemność, a nie obowiązek.",
+      "Znam polski (C2), angielski (C1) i trochę hiszpańskiego (A1). Dzięki angielskiemu czytam dokumentację, badania i nowości u źródła, zanim trafią do polskich artykułów.",
+      "Śledzenie tego, co dzieje się w AI i w mojej dziedzinie za granicą, i sprawdzanie, co da się wykorzystać u siebie, to dla mnie przyjemność, a nie obowiązek.",
     ],
-    match: ["Śledzenie nowości w AI", "Wdrażanie AI wcześniej niż konkurencja"],
+    match: ["Angielski C1", "Samodzielne śledzenie nowości"],
   },
   {
     id: "poster",
@@ -231,7 +229,7 @@ export const ITEMS = [
       "Moje projekty żyją na GitHubie: Anatomia 3D, Centrum Dowodzenia, JARVIS, Moje sprawy i ten pokój. Publikuję je przez GitHub Pages, a w Anatomii każde wdrożenie przechodzi przez GitHub Actions z walidacją danych.",
       "Historia zmian jest po to, żeby po publikacji dało się odpowiedzieć na pytanie „co się zmieniło i dlaczego”, a w razie problemu szybko wrócić do działającej wersji.",
     ],
-    match: ["Git i GitHub (mile widziane)", "Każda publikacja kończy się wpisem w changelogu"],
+    match: ["Git i GitHub", "Porządek w zmianach i publikacjach"],
     links: [{ label: "Mój GitHub", url: "https://github.com/DamianLapczynski" }],
   },
   {
@@ -243,7 +241,7 @@ export const ITEMS = [
       "Studiuję zaocznie, prowadzę zajęcia, a po godzinach buduję projekty. Nikt mi ich nie zadaje: uczę się, bo chcę.",
       "Informatyka, ekonomia, fizjoterapia, AI: szybko wchodzę w nowe dziedziny i łączę je ze sobą. Anatomia 3D powstała właśnie na styku dwóch z nich.",
     ],
-    match: ["Ambicja, samodzielność i chęć szybkiej nauki"],
+    match: ["Ambicja i samodzielność", "Szybka nauka nowych dziedzin"],
   },
   {
     id: "phone",
@@ -251,7 +249,7 @@ export const ITEMS = [
     label: "Kontakt",
     title: "Porozmawiajmy",
     body: [
-      "Chętnie opowiem o projektach na żywo i pokażę, jak pracuję z Claude Code na prawdziwym przykładzie z Waszej firmy.",
+      "Chętnie opowiem o projektach na żywo i pokażę, jak pracuję z Claude Code na prawdziwym przykładzie.",
       `Telefon: ${PHONE} · E-mail: ${EMAIL}`,
     ],
     match: [],
@@ -270,15 +268,15 @@ export const ITEMS = [
 export const QUICK = {
   contact: { phone: PHONE, email: EMAIL, github: "https://github.com/DamianLapczynski" },
   summary:
-    "Student fizjoterapii (DSW Wrocław) i trener pływania, z technikum informatycznym, ekonomią i rachunkowością za sobą. Na co dzień buduję z Claude Code aplikacje i automatyzacje, których sam używam: atlas anatomii 3D z bazą danych i logowaniem, osobisty pulpit, zadania synchronizujące kalendarz i pocztę. Bez komercyjnego stażu w IT, z projektami, które działają i można je kliknąć.",
+    "Student fizjoterapii (DSW Wrocław) i trener pływania, z technikum informatycznym, ekonomią i rachunkowością za sobą. Łączę pracę z ludźmi z technologią: na co dzień buduję z AI aplikacje i automatyzacje, których sam używam, od atlasu anatomii 3D z bazą danych po zadania, które same synchronizują kalendarz i pocztę. Wszystkie projekty działają i można je kliknąć.",
   fit: [
-    ["Własne projekty zrobione z pomocą AI", "Anatomia 3D, Centrum Dowodzenia, Inkaso w pigułce, JARVIS, Moje sprawy, ten pokój 3D: wszystkie z linkami."],
-    ["Codzienna praca z Claude / Claude Code", "Każdy projekt powyżej powstał z Claude Code; automatyzacje działają na Claude według harmonogramu."],
-    ["Biznesowe spojrzenie na procesy", "Ekonomia, rachunkowość i sprzedaż. Demo inkaso pokazuje, gdzie w obsłudze wpłat ucieka czas i jak to skrócić."],
-    ["Ciekawość, jak działa aplikacja „pod spodem”", "Firestore, logowanie Google, tryb offline i potok modeli 3D w Anatomii; SQLite i reguły SQL w demo inkaso."],
-    ["Dokładność, sprawdzanie wyników AI", "Walidacja danych w GitHub Actions przed publikacją, 13 testów w demo, w JARVIS-ie tryb próbny i cofanie zmian."],
-    ["Łatwość w rozmowie z osobami nietechnicznymi", "Uczę pływania: codziennie tłumaczę trudną technikę prostym językiem."],
-    ["Mile widziane: SQL, TypeScript/React, Git, API, webhooki, automatyzacja", "Demo inkaso (SQL, TS, React, podgląd webhooka), GitHub i GitHub Actions, integracje z Google Calendar i Gmailem."],
+    ["Praca z ludźmi i komunikacja", "Uczę pływania, prowadzę grupy szkolne i półkolonie; doświadczenie w sprzedaży i edukacji; aplikacja robiona z prawdziwą użytkowniczką."],
+    ["Automatyzacja i usprawnianie procesów", "Zadania, które same synchronizują plan zajęć, kalendarz i zadania; rejestrator wykładów; demo rozliczania wpłat."],
+    ["Praca z AI", "Każdy projekt powstał z Claude Code; wyniki AI zawsze sprawdzam, zanim trafią dalej."],
+    ["Programowanie i dane", "Python, JavaScript/TypeScript, React, SQL, Firebase, Git/GitHub; testy automatyczne w demo i w JARVIS-ie."],
+    ["Zdrowie i ruch", "Studia fizjoterapii, praca trenera pływania, atlas anatomii 3D z testami klinicznymi i schorzeniami."],
+    ["Biznes i finanse", "Ekonomia i rachunkowość, sprzedaż; demo pokazujące, gdzie w obsłudze płatności ucieka czas."],
+    ["Samodzielność i szybka nauka", "Wszystkie projekty zrobione po godzinach, z własnej inicjatywy, przy studiach i pracy."],
   ],
   about: [
     ["Studia", "Fizjoterapia, Uniwersytet DSW, Wrocław (niestacjonarne)"],

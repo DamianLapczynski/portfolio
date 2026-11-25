@@ -4,7 +4,7 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
-import { ITEMS, OFFER } from "./content.js";
+import { ITEMS, PROFILE } from "./content.js";
 
 /* =====================================================================
    Pokój Damiana.
@@ -17,8 +17,8 @@ const ITEM = Object.fromEntries(ITEMS.map((i) => [i.id, i]));
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const MODEL_URL = "assets/models/room.glb";
 
-document.querySelectorAll(".hud__role").forEach((el) => (el.textContent = OFFER.role));
-document.querySelectorAll(".intro__offer").forEach((el) => (el.textContent = `${OFFER.role} · ${OFFER.company}`));
+document.querySelectorAll(".hud__role").forEach((el) => (el.textContent = PROFILE.tagline));
+document.querySelectorAll(".intro__offer").forEach((el) => (el.textContent = PROFILE.intro));
 
 const enterBtn = $("#enter");
 const setLoading = (txt) => (enterBtn.textContent = txt);

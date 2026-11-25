@@ -1,4 +1,4 @@
-import { ITEMS, OFFER, QUICK } from "./content.js";
+import { ITEMS, PROFILE, QUICK } from "./content.js";
 
 /* Szybki przegląd: jedna strona bez 3D, do druku albo PDF. Niezależny od Three.js. */
 const ITEM = Object.fromEntries(ITEMS.map((i) => [i.id, i]));
@@ -17,9 +17,9 @@ function render() {
       <button type="button" class="quick__btn quick__btn--primary" data-print>Zapisz jako PDF</button>
     </div>
     <header class="quick__head">
-      <p class="quick__kicker">Portfolio · ${esc(OFFER.company)}</p>
+      <p class="quick__kicker">Portfolio · Wrocław</p>
       <h1>Damian Łapczyński</h1>
-      <p class="quick__role">Kandydat na stanowisko <strong>${esc(OFFER.role)}</strong></p>
+      <p class="quick__role">${esc(PROFILE.intro)} · <strong>${esc(PROFILE.tagline)}</strong></p>
       <p class="quick__contact">
         <a href="tel:+48${c.phone.replace(/\s/g, "")}">${esc(c.phone)}</a> ·
         <a href="mailto:${esc(c.email)}">${esc(c.email)}</a> ·
@@ -30,9 +30,9 @@ function render() {
     <section><h2>W skrócie</h2><p>${esc(QUICK.summary)}</p></section>
 
     <section>
-      <h2>Dlaczego pasuję do oferty</h2>
+      <h2>Co wnoszę</h2>
       <table class="quick__fit">
-        <thead><tr><th>Wymaganie z oferty</th><th>Dowód</th></tr></thead>
+        <thead><tr><th>Obszar</th><th>Gdzie to widać</th></tr></thead>
         <tbody>${QUICK.fit.map(([r, p]) => `<tr><td>${esc(r)}</td><td>${esc(p)}</td></tr>`).join("")}</tbody>
       </table>
     </section>
